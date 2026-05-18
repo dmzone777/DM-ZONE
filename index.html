@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login - FF Pro</title>
+<style>
+body{
+    font-family:sans-serif;
+    background:#0f2027;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.box{
+    background:#1c1c1c;
+    padding:30px;
+    border-radius:10px;
+    text-align:center;
+}
+input{
+    display:block;
+    margin:10px auto;
+    padding:10px;
+    width:200px;
+}
+button{
+    padding:10px 20px;
+    background:#00ffcc;
+    border:none;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Login</h2>
+    <input type="text" id="user" placeholder="Username">
+    <input type="password" id="pass" placeholder="Password">
+    <button onclick="login()">Login / Signup</button>
+</div>
+
+<script>
+function login(){
+    let u = user.value;
+    let p = pass.value;
+
+    if(u=="" || p==""){
+        alert("Fill all fields");
+        return;
+    }
+
+    localStorage.setItem("user",u);
+    localStorage.setItem("pass",p);
+
+    window.location="home.html";
+}
+</script>
+
+</body>
+</html>
