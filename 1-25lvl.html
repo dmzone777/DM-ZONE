@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #10131a;
+            color: white;
+            min-height: 100vh;
+            padding: 25px 15px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 30px;
+        }
+
+        .levels {
+            max-width: 600px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .level-btn {
+            height: 80px;
+            border: none;
+            border-radius: 15px;
+            background: #252b38;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+
+        .level-btn:hover {
+            transform: translateY(-3px);
+            background: #343c4d;
+        }
+
+        .level-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 450px) {
+            .levels {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎮 LEVELS</h1>
+
+    <div class="levels">
+
+        <button class="level-btn" onclick="location.href='1lvl.html'">Level 1</button>
+        <button class="level-btn" onclick="location.href='2lvl.html'">Level 2</button>
+        <button class="level-btn" onclick="location.href='3lvl.html'">Level 3</button>
+        <button class="level-btn" onclick="location.href='4lvl.html'">Level 4</button>
+        <button class="level-btn" onclick="location.href='5lvl.html'">Level 5</button>
+
+        <button class="level-btn" onclick="location.href='6lvl.html'">Level 6</button>
+        <button class="level-btn" onclick="location.href='7lvl.html'">Level 7</button>
+        <button class="level-btn" onclick="location.href='8lvl.html'">Level 8</button>
+        <button class="level-btn" onclick="location.href='9lvl.html'">Level 9</button>
+        <button class="level-btn" onclick="location.href='10lvl.html'">Level 10</button>
+
+        <button class="level-btn" onclick="location.href='11lvl.html'">Level 11</button>
+        <button class="level-btn" onclick="location.href='12lvl.html'">Level 12</button>
+        <button class="level-btn" onclick="location.href='13lvl.html'">Level 13</button>
+        <button class="level-btn" onclick="location.href='14lvl.html'">Level 14</button>
+        <button class="level-btn" onclick="location.href='15lvl.html'">Level 15</button>
+
+        <button class="level-btn" onclick="location.href='16lvl.html'">Level 16</button>
+        <button class="level-btn" onclick="location.href='17lvl.html'">Level 17</button>
+        <button class="level-btn" onclick="location.href='18lvl.html'">Level 18</button>
+        <button class="level-btn" onclick="location.href='19lvl.html'">Level 19</button>
+        <button class="level-btn" onclick="location.href='20lvl.html'">Level 20</button>
+
+        <button class="level-btn" onclick="location.href='21lvl.html'">Level 21</button>
+        <button class="level-btn" onclick="location.href='22lvl.html'">Level 22</button>
+        <button class="level-btn" onclick="location.href='23lvl.html'">Level 23</button>
+        <button class="level-btn" onclick="location.href='24lvl.html'">Level 24</button>
+        <button class="level-btn" onclick="location.href='25lvl.html'">Level 25</button>
+
+    </div>
+
+</body>
+</html>
