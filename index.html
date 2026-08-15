@@ -1,239 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Chess - Supabase Test</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <title>My Game</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #111827;
-      color: white;
-      text-align: center;
-      padding: 30px 15px;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    button {
-      padding: 12px 20px;
-      margin: 8px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #263b70, #101522 55%, #080b12);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
 
-    #status {
-      margin: 20px 0;
-      padding: 15px;
-      background: #1f2937;
-      border-radius: 10px;
-    }
+        .home {
+            width: 100%;
+            max-width: 500px;
+            min-height: 100vh;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-    #games {
-      margin-top: 20px;
-      text-align: left;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
+        /* Game Logo */
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 30px;
+            background: linear-gradient(145deg, #586cff, #2736a8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 55px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+        }
 
-    .game {
-      background: #1f2937;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 8px;
-    }
-  </style>
+        h1 {
+            font-size: 42px;
+            letter-spacing: 3px;
+            text-shadow: 0 5px 15px black;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #aeb8d0;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+
+        /* Buttons */
+        .menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            width: 100%;
+            height: 62px;
+            border: none;
+            border-radius: 16px;
+            color: white;
+            font-size: 19px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 7px 15px rgba(0,0,0,0.3);
+        }
+
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .start {
+            background: linear-gradient(135deg, #00c853, #00a844);
+            font-size: 22px;
+        }
+
+        .continue {
+            background: linear-gradient(135deg, #536dfe, #304ffe);
+        }
+
+        .settings {
+            background: #252d3d;
+        }
+
+        .about {
+            background: #252d3d;
+        }
+
+        .footer {
+            margin-top: 35px;
+            color: #68738b;
+            font-size: 12px;
+        }
+    </style>
 </head>
 
 <body>
 
-  <h1>♟️ Online Chess</h1>
+    <div class="home">
 
-  <div id="status">Connecting to Supabase...</div>
+        <!-- Logo -->
+        <div class="logo">
+            🎮
+        </div>
 
-  <button onclick="createGame()">Create Test Game</button>
-  <button onclick="loadGames()">Refresh Games</button>
+        <h1>MY GAME</h1>
 
-  <div id="games"></div>
+        <p class="subtitle">Ready for the challenge?</p>
 
-<script>
+        <div class="menu">
 
-  // =========================
-  // SUPABASE CONFIG
-  // =========================
+            <!-- Start Game -->
+            <button class="btn start"
+                onclick="location.href='1-25lvl.html'">
+                ▶ START GAME
+            </button>
 
-  const SUPABASE_URL =
-    "https://mobjgpztclgjlsnraiwx.supabase.co";
+            <!-- Future Feature -->
+            <button class="btn continue"
+                onclick="alert('Continue feature coming soon!')">
+                ↪ CONTINUE
+            </button>
 
-  const SUPABASE_KEY =
-    "sb_publishable_0Be8a82wzeNZqGq1_6aS-Q_sNWHrYoK";
+            <!-- Future Feature -->
+            <button class="btn settings"
+                onclick="alert('Settings coming soon!')">
+                ⚙ SETTINGS
+            </button>
 
-  const client = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+            <!-- Future Feature -->
+            <button class="btn about"
+                onclick="alert('About section coming soon!')">
+                ℹ ABOUT
+            </button>
 
+        </div>
 
-  // =========================
-  // CONNECTION TEST
-  // =========================
+        <div class="footer">
+            © 2026 My Game
+        </div>
 
-  async function testConnection() {
-
-    const { data, error } = await client
-      .from("games")
-      .select("*")
-      .limit(5);
-
-    if (error) {
-      document.getElementById("status").innerText =
-        "❌ Connection/Error: " + error.message;
-
-      console.error(error);
-      return;
-    }
-
-    document.getElementById("status").innerText =
-      "✅ Supabase Connected!";
-
-    showGames(data);
-  }
-
-
-  // =========================
-  // CREATE GAME
-  // =========================
-
-  async function createGame() {
-
-    const { data, error } = await client
-      .from("games")
-      .insert({
-        player1: "Player 1",
-        status: "waiting",
-        turn: "white",
-        board: {}
-      })
-      .select()
-      .single();
-
-    if (error) {
-
-      alert("❌ Game create error:\n" + error.message);
-
-      console.error(error);
-      return;
-    }
-
-    alert("✅ Game Created!\nGame ID:\n" + data.id);
-
-    loadGames();
-  }
-
-
-  // =========================
-  // LOAD GAMES
-  // =========================
-
-  async function loadGames() {
-
-    const { data, error } = await client
-      .from("games")
-      .select("*")
-      .order("created_at", {
-        ascending: false
-      });
-
-    if (error) {
-
-      document.getElementById("status").innerText =
-        "❌ Error: " + error.message;
-
-      console.error(error);
-      return;
-    }
-
-    showGames(data);
-  }
-
-
-  // =========================
-  // SHOW GAMES
-  // =========================
-
-  function showGames(games) {
-
-    const container =
-      document.getElementById("games");
-
-    if (!games || games.length === 0) {
-
-      container.innerHTML =
-        "<p>No games yet.</p>";
-
-      return;
-    }
-
-    container.innerHTML = "";
-
-    games.forEach(game => {
-
-      const div =
-        document.createElement("div");
-
-      div.className = "game";
-
-      div.innerHTML = `
-        <b>Game ID:</b> ${game.id}<br>
-        <b>Player 1:</b> ${game.player1 || "-"}<br>
-        <b>Player 2:</b> ${game.player2 || "-"}<br>
-        <b>Turn:</b> ${game.turn}<br>
-        <b>Status:</b> ${game.status}
-      `;
-
-      container.appendChild(div);
-
-    });
-  }
-
-
-  // =========================
-  // REALTIME
-  // =========================
-
-  client
-    .channel("games-realtime")
-    .on(
-      "postgres_changes",
-      {
-        event: "*",
-        schema: "public",
-        table: "games"
-      },
-      payload => {
-
-        console.log("Realtime update:", payload);
-
-        loadGames();
-
-      }
-    )
-    .subscribe((status) => {
-
-      console.log("Realtime:", status);
-
-    });
-
-
-  // START
-
-  testConnection();
-
-</script>
+    </div>
 
 </body>
 </html>
