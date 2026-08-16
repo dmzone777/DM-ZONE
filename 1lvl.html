@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Math Puzzle - Level 1</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #141e30, #243b55);
+        color: white;
+    }
+
+    .game {
+        width: 92%;
+        max-width: 430px;
+        padding: 25px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .level {
+        font-size: 18px;
+        opacity: 0.8;
+    }
+
+    h1 {
+        margin: 10px 0 25px;
+    }
+
+    .question {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 25px 0;
+    }
+
+    .options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    button {
+        border: none;
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 17px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .option {
+        background: white;
+        color: #222;
+    }
+
+    .option:hover {
+        transform: scale(1.03);
+    }
+
+    .correct {
+        background: #20c997 !important;
+        color: white;
+    }
+
+    .wrong {
+        background: #ff4757 !important;
+        color: white;
+    }
+
+    .message {
+        min-height: 30px;
+        margin: 18px 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .controls {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .controls button {
+        flex: 1;
+        color: white;
+    }
+
+    .hint {
+        background: #f39c12;
+    }
+
+    .restart {
+        background: #3498db;
+    }
+
+    .next {
+        background: #9b59b6;
+    }
+
+    #hintText {
+        display: none;
+        margin-top: 15px;
+        padding: 12px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 10px;
+        color: #ffd166;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="game">
+
+    <div class="level">LEVEL 1</div>
+    <h1>🧠 Math Puzzle</h1>
+
+    <div class="question">
+        8 + 7 × 2 = ?
+    </div>
+
+    <div class="options">
+        <button class="option" onclick="checkAnswer(this, 30)">30</button>
+        <button class="option" onclick="checkAnswer(this, 22)">22</button>
+        <button class="option" onclick="checkAnswer(this, 24)">24</button>
+        <button class="option" onclick="checkAnswer(this, 18)">18</button>
+    </div>
+
+    <div class="message" id="message"></div>
+
+    <div id="hintText">
+        💡 Hint: पहले multiplication करो, फिर addition.
+    </div>
+
+    <div class="controls">
+        <button class="hint" onclick="showHint()">💡 Hint</button>
+        <button class="restart" onclick="restartGame()">🔄 Restart</button>
+        <button class="next" onclick="nextLevel()">➡️ Next</button>
+    </div>
+
+</div>
+
+<script>
+
+let solved = false;
+
+function checkAnswer(button, answer) {
+
+    if (solved) return;
+
+    let buttons = document.querySelectorAll(".option");
+    let message = document.getElementById("message");
+
+    if (answer === 22) {
+        button.classList.add("correct");
+        message.innerHTML = "🎉 Correct Answer!";
+        message.style.color = "#20c997";
+        solved = true;
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+        });
+
+    } else {
+        button.classList.add("wrong");
+        message.innerHTML = "❌ Wrong Answer! Try Again.";
+        message.style.color = "#ff4757";
+
+        setTimeout(() => {
+            button.classList.remove("wrong");
+        }, 700);
+    }
+}
+
+function showHint() {
+    document.getElementById("hintText").style.display = "block";
+}
+
+function restartGame() {
+    location.reload();
+}
+
+function nextLevel() {
+    window.location.href = "2lvl.html";
+}
+
+</script>
+
+</body>
+</html>
